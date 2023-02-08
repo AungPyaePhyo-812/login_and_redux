@@ -1,0 +1,6 @@
+react-router-dom install 
+    npm i react-router-dom
+
+styled-components install   
+    npm i --save styled-components
+    

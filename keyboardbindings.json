@@ -1,0 +1,6 @@
+[
+    { "key": "ctrl+shift+alt+j", "command": "editor.action.copyLinesDownAction",
+                                    "when": "editorTextFocus && !editorReadonly" },
+    { "key": "ctrl+shift+alt+k", "command": "editor.action.copyLinesUpAction",
+                                    "when": "editorTextFocus && !editorReadonly" }
+]

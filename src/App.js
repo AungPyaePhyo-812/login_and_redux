@@ -1,42 +1,23 @@
-import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import { Container } from './styles/Shares';
-import Home from './components/Home';
-import { GlobalCSS } from './styles/GlobalCss'
-import Login from './components/Login';
-import LoginContextProvider from './store/LoginContextApi';
-import RouteGuard from './helpers/RouteGuard';
-
-
-
-
-const theme = {
-  colors : {
-    primary : "aliceblue"
-  }
-}
+import { useSelector, useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import TCompo from "./components/TCompo";
+import UCompo from "./components/UCompo";
+import { actionCreators } from './stores/actionCreators'
 
 function App() {
+  const account = useSelector(state => state.account);
+  const dispatch = useDispatch();
+  const {add, remove} = bindActionCreators(actionCreators,dispatch);
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalCSS />
-      <Container>
-        <LoginContextProvider>
-          <Router>
-            <Routes>
-              <Route path="/" element={ <Login /> } />
-              <Route path="/home" element={ 
-                <RouteGuard>
-                    <Home />
-                </RouteGuard>
-               } />  
-            </Routes>
-          </Router>
-        </LoginContextProvider>
-      </Container>
-    </ThemeProvider>
-    
+      <>
+        <h1>{account}</h1>
+        <button  onClick={()=>add(50)}>Add</button>
+        <button onClick={()=>remove(50)}>Remove</button>
+
+        <TCompo />
+
+        <UCompo></UCompo>
+      </>
   );
 }
 
